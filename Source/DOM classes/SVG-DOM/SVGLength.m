@@ -620,8 +620,8 @@ static float cachedDevicePixelsPerInch;
         return 132.0f; // Simulator, running on desktop machine
     }
 
-    NSAssert(FALSE, @"Cannot determine the PPI values for current device; returning 0.0f - hopefully this will crash your code (you CANNOT run SVG's that use CM/IN/MM etc until you fix this)" );
-    return 0.0f; // Bet you'll get a divide by zero here...
+    SVGKitLogWarn(@"[%@] WARNING: We could not figure out the screen size so we are defaulting to 326.0f", [self class]);
+    return 326.0f; // Normally 0, but the newest version of iOS is causing an error in the simulator. For now default to 326.0f for PPI
 }
 
 @end
